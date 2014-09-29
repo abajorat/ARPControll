@@ -2,6 +2,7 @@ package views;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import models.Device;
+
 
 public class MainView extends JPanel {
 	
@@ -20,19 +23,19 @@ public class MainView extends JPanel {
 	JLabel timePendent;
 	JLabel timeInactive;
 	IconView left;
-	JMenuBar bar;
-	JMenu main;
-	JMenu options;
-	JMenuItem mainItem;
-	JMenuItem optionsItem;
 	
 	
 	public MainView(){
 		
 		this.setLayout(new GridLayout(1,2));
-		
-		left = new IconView(20);
+		byte[] a = {1,2,3,2,1,3};
+		left = new IconView(new Device(a,a),20);
 		this.add(left);
+		left.addIcon("/home/kai/Pictures/images.png");
+		left.addIcon("/home/kai/Pictures/images.png");
+		left.addIcon("/home/kai/Pictures/images.png");
+		left.addIcon("/home/kai/Pictures/images.png");
+		left.addIcon("/home/kai/Pictures/images.png");
 		left.addIcon("/home/kai/Pictures/images.png");
 		JPanel right = new JPanel();
 		right.setLayout(new GridLayout(2,1));
@@ -57,9 +60,7 @@ public class MainView extends JPanel {
 		
 		this.add(right);
 		
-		bar = new JMenuBar();
-		main = new JMenu("Devices");
-		options = new JMenu("Options");
+		
 	}
 	
 	
