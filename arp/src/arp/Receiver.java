@@ -1,5 +1,6 @@
 package arp;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,17 +9,21 @@ import models.Device;
 
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
+import org.jnetpcap.packet.JMemoryPacket;
+import org.jnetpcap.packet.JPacket;
 import org.jnetpcap.packet.PcapPacket;
 import org.jnetpcap.packet.PcapPacketHandler;
 import org.jnetpcap.protocol.network.Arp; 
 
 public class Receiver {
 	
-	PcapIf device;
-	PcapPacketHandler<String> jpacketHandler;
-	LinkedList<Device> dispositivos = new LinkedList<Device>();
+	private PcapIf device;
+	private PcapPacketHandler<String> jpacketHandler;
+	private LinkedList<Device> dispositivos = new LinkedList<Device>();
+	private Pcap pcap;
+	
 	public Receiver(){
-		System.out.println("start");
+		
 		List<PcapIf> devices = new ArrayList<PcapIf>(); 
         StringBuilder error = new StringBuilder(); 
         int control = Pcap.findAllDevs(devices, error); 
@@ -31,7 +36,7 @@ public class Receiver {
         int snaplen = 64 * 1024;           
         int flags = Pcap.MODE_PROMISCUOUS; 
         int timeout = 1000 * 10;     
-        Pcap pcap =  
+        pcap =  
             Pcap.openLive(device.getName(), snaplen, flags, timeout, error);  
   
         if (pcap == null) {  
@@ -68,11 +73,25 @@ public class Receiver {
                 }
             }
         };
-        pcap.loop(400, jpacketHandler, "jNetPcap rocks!");  
-        pcap.close();
-        for(Device d : dispositivos){
-        	System.out.println(d.getMac() + "    "+ d.getIp() );
-        }
-        System.out.println("acabamos");
+       
+	}
+	public void start(int time){
+		System.out.println("vamos");
+		 pcap.loop(time, jpacketHandler, "jNetPcap rocks!");  
+	        pcap.close();
+	        for(Device d : dispositivos){
+	        	System.out.println(d.getMac() + "    "+ d.getIp() );
+	        }
+	        System.out.println("acabamos");
+	}
+	public void send(){
+		Arp arp = new Arp();
+		byte[] a = {0,0,0,0,0,0,0,0};
+		ByteBuffer b = ByteBuffer.wrap(a);
+		JPacket packet = new JMemoryPacket(a);
+		packet.getHeader(arp);
+		pcap.sendPacket(packet);
+		System.out.println("versucht");
+		
 	}
 }

@@ -19,6 +19,8 @@ import arp.Receiver;
  
 		public static void main(String[] args) {  
 			Receiver r =new Receiver();
+			System.out.println("hallo");
+			r.start(400);
 		}
 
     }  
