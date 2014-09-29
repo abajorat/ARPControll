@@ -49,12 +49,15 @@ public class Receiver {
                 {	
             		
             		all = arp.getByteArray(8, 19);
-            		mac = arp.getByteArray(8, 13);
-            		ip = arp.getByteArray(14, 19);
+            		for(int i = 0; i<6 ; i++){
+            			mac[i] = all[i];
+            			ip[i] = all[i+6];
+            		}
+            		
             		Device d = new Device(mac, ip);
             		boolean exists = false;
             		for(Device dev: dispositivos){
-            			if(dev.getMac()==d.getMac()){
+            			if(dev.getMac().equals(d.getMac())){
             				dev.setIp(d.getIp());
             				exists = true;
             			}
@@ -65,7 +68,7 @@ public class Receiver {
                 }
             }
         };
-        pcap.loop(300, jpacketHandler, "jNetPcap rocks!");  
+        pcap.loop(400, jpacketHandler, "jNetPcap rocks!");  
         pcap.close();
         for(Device d : dispositivos){
         	System.out.println(d.getMac() + "    "+ d.getIp() );
