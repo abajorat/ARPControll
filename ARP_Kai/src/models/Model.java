@@ -2,7 +2,10 @@ package models;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
+
+import org.jnetpcap.PcapIf;
 
 public class Model extends Observable implements Serializable {
 	/**
@@ -23,6 +26,24 @@ public class Model extends Observable implements Serializable {
 	private ByteArray network;
 	private int maskValue;
 	private double hosts;
+	private PcapIf device;
+	private List<PcapIf> devices;
+
+	public PcapIf getDevice() {
+		return device;
+	}
+
+	public void setDevice(PcapIf device) {
+		this.device = device;
+	}
+
+	public List<PcapIf> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<PcapIf> devices) {
+		this.devices = devices;
+	}
 
 	public Model() {
 		setPendent(10);
