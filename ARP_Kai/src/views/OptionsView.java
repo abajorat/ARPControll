@@ -24,8 +24,7 @@ import models.ByteArray;
 import models.Model;
 
 public class OptionsView extends JPanel {
-
-    private final JComboBox box;
+;
     private final JTextField bytes1;
     private final JTextField bytes2;
     private final JTextField bytes3;
@@ -50,11 +49,7 @@ public class OptionsView extends JPanel {
 	left.setLayout(new GridLayout(8, 1));
 	JPanel panel = new JPanel();
 	panel.setLayout(new FlowLayout(FlowLayout.LEADING));
-	label = new JLabel("Device: ");
-	String[] items = { "bla1", "bla2", "bla3" };
-	box = new JComboBox(items);
 	panel.add(label);
-	panel.add(box);
 	left.add(panel);
 
 	panel = new JPanel();

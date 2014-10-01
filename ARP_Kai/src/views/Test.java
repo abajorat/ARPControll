@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import models.Model;
+
 public class Test {
 
     /**
@@ -31,9 +33,9 @@ public class Test {
 	} catch (Exception e) {
 	    System.out.println("Error!");
 	}
-	
+	Model model = new Model();
 	JFrame frame = new JFrame("Test");
-	MainView view = new MainView();
+	MainView view = new MainView(model);
 	JPanel panel = new JPanel();
 	final JPanel panel2 = new JPanel();
 	final CardLayout card = new CardLayout();
@@ -82,7 +84,7 @@ public class Test {
 
 	panel.add(bar, BorderLayout.NORTH);
 	panel.setPreferredSize(new Dimension(700, 300));
-	OptionsView view2 = new OptionsView();
+	OptionsView view2 = new OptionsView(model);
 	panel2.add(view2, "options");
 	card.show(panel2, "options");
 	frame.setContentPane(panel);
