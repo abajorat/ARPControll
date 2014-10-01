@@ -43,7 +43,7 @@ public class Test {
 	Model model = new Model();
 	Communicator com = new Communicator(model);
 	JFrame frame = new JFrame("Main");
-	MainView view = new MainView(model);
+	MainView view = new MainView(model,com);
 	JPanel panel = new JPanel();
 	final JPanel panel2 = new JPanel();
 	final CardLayout card = new CardLayout();
