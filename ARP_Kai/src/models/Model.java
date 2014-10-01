@@ -13,8 +13,9 @@ public class Model extends Observable implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4890954930089081055L;
-	private int pendentTime;
-	private int inactiveTime;
+	private int pendent;
+	private int inactive;
+	private int timeout;
 	private LinkedList<Device> dispositivos;
 	private ByteArray senderIp;
 	private ByteArray senderMac;
@@ -24,8 +25,9 @@ public class Model extends Observable implements Serializable {
 	private double hosts;
 
 	public Model() {
-		setPendentTime(10);
-		setInactiveTime(20);
+		setPendent(10);
+		setInactive(20);
+		setTimeout(200);
 		this.dispositivos = new LinkedList<Device>();
 		ByteArray b = new ByteArray("0.0.0.0", false);
 		setSenderIp(b);
@@ -36,6 +38,16 @@ public class Model extends Observable implements Serializable {
 		setMask(b);
 		this.maskValue = computeMaskValue(mask.getInts());
 		this.hosts = Math.pow(2, 32 - maskValue);
+	}
+
+	public void setTimeout(int i) {
+		this.timeout = i;
+		setChanged();
+		notifyObservers();
+		
+	}
+	public int getTimeout(){
+		return timeout;
 	}
 
 	public void addDevice(Device d) {
@@ -66,24 +78,24 @@ public class Model extends Observable implements Serializable {
 		return maskValue;
 	}
 
-	public int getPendentTime() {
-		return pendentTime;
+	public int getPendent() {
+		return pendent;
 	}
 
-	public void setPendentTime(int pendentTime) {
-		this.pendentTime = pendentTime;
+	public void setPendent(int pendent) {
+		this.pendent = pendent;
 		setChanged();
-		notifyObservers("pendentTime");
+		notifyObservers();
 	}
 
-	public int getInactiveTime() {
-		return inactiveTime;
+	public int getInactive() {
+		return inactive;
 	}
 
-	public void setInactiveTime(int inactiveTime) {
-		this.inactiveTime = inactiveTime;
+	public void setInactive(int inactive) {
+		this.inactive = inactive;
 		setChanged();
-		notifyObservers("inactiveTime");
+		notifyObservers();
 	}
 
 	public ByteArray getSenderIp() {
@@ -93,7 +105,7 @@ public class Model extends Observable implements Serializable {
 	public void setSenderIp(ByteArray senderIp) {
 		this.senderIp = senderIp;
 		setChanged();
-		notifyObservers("senderIp");
+		notifyObservers();
 	}
 
 	public ByteArray getSenderMac() {
@@ -103,7 +115,7 @@ public class Model extends Observable implements Serializable {
 	public void setSenderMac(ByteArray senderMac) {
 		this.senderMac = senderMac;
 		setChanged();
-		notifyObservers("senderMac");
+		notifyObservers();
 	}
 
 	public ByteArray getMask() {
@@ -113,7 +125,7 @@ public class Model extends Observable implements Serializable {
 	public void setMask(ByteArray mask) {
 		this.mask = mask;
 		setChanged();
-		notifyObservers("mask");
+		notifyObservers();
 	}
 
 	public ByteArray getNetwork() {
@@ -123,7 +135,7 @@ public class Model extends Observable implements Serializable {
 	public void setNetwork(ByteArray network) {
 		this.network = network;
 		setChanged();
-		notifyObservers("network");
+		notifyObservers();
 	}
 
 	public LinkedList<Device> getDispositivos() {
