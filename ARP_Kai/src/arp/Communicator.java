@@ -14,26 +14,21 @@ import org.jnetpcap.packet.PcapPacketHandler;
 import org.jnetpcap.protocol.network.Arp;
 
 public class Communicator extends Thread {
-	private PcapIf device;
+	
 	private PcapPacketHandler<String> jpacketHandler;
 	private Pcap pcap;
-	public void setDevice(PcapIf device) {
-		this.device = device;
-	}
-
 	private final Model model;
-	private List<PcapIf> devices;
 	private StringBuilder error;
-	public List<PcapIf> getDevices() {
-		return devices;
-	}
-
+	private PcapIf device;
+	private List<PcapIf> devices;
+	
 	public Communicator( final Model model){
 		
 		this.model = model;
 		devices = new ArrayList<PcapIf>(); 
 		error = new StringBuilder(); 
         int control = Pcap.findAllDevs(devices, error); 
+        model.setDevices(devices);
         if (control == Pcap.NOT_OK || devices.isEmpty()) {  
             System.err.printf("Can't read list of devices, error is %s", error  
                 .toString());  
@@ -42,8 +37,9 @@ public class Communicator extends Thread {
 
 	}
 	
-	public void open(int devId){
-        this.device = devices.get(devId);
+	public void open(){
+      //  this.device = devices.get(devId);
+		this.device = model.getDevice();
         int snaplen = 64 * 1024;           
         int flags = Pcap.MODE_PROMISCUOUS; 
         int timeout = 1000 * 10;     
@@ -88,7 +84,14 @@ public class Communicator extends Thread {
             }
         };
 	}
+	public void setDevice(PcapIf device) {
+		this.device = device;
+	}
 
+	public List<PcapIf> getDevices() {
+		return devices;
+	}
+	
 	public LinkedList<Device> getDispositivos() {
 		return model.getDispositivos();
 	}

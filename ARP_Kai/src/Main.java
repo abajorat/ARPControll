@@ -27,7 +27,12 @@ public class Main {
 		}
 		
 		Communicator com = new Communicator(model);
-		com.open(2);
+		model.setDevice(model.getDevices().get(2));
+		com.open();
+		
+		model.setSenderIp(new ByteArray("192.168.0.23", false));
+		model.setNetwork(new ByteArray("192.168.0.0", false));
+		//model.setSenderMac(new ByteArray("24:", false));
 		
 		
 		Operator op = new Operator(com, model);

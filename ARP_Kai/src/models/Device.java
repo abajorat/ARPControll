@@ -14,6 +14,7 @@ public class Device extends Observable implements Serializable {
 	private long lastSignal;
 	private String name;
 	private String type;
+	private int failedMessages;
 	
 	public String getType() {
 		return type;
@@ -46,7 +47,11 @@ public class Device extends Observable implements Serializable {
 		this.status = 0; //0 = active
 		this.lastSignal = lastSignal;
 		this.name = "new";
-
+		this.failedMessages = 0;
+	}
+	
+	public int getFailedMessages(){
+		return failedMessages;
 	}
 	public long getLastSignal() {
 		return lastSignal;
