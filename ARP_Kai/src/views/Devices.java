@@ -41,7 +41,7 @@ public class Devices extends JPanel {
 	pc.add(pclabel);
 	
 	try {
-	    pic = ImageIO.read(new File("resources/images.png"));
+	    pic = ImageIO.read(new File("resources/printer.png"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
@@ -55,7 +55,7 @@ public class Devices extends JPanel {
 	printer.add(printerlabel);
 	
 	try {
-	    pic = ImageIO.read(new File("resources/images.png"));
+	    pic = ImageIO.read(new File("resources/laptop.png"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
@@ -68,7 +68,7 @@ public class Devices extends JPanel {
 	router.setBackground(Color.white);
 	router.add(routerlabel);
 	try {
-	    pic = ImageIO.read(new File("resources/images.png"));
+	    pic = ImageIO.read(new File("resources/laptop.png"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

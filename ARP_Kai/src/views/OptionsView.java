@@ -45,8 +45,7 @@ public class OptionsView extends JPanel {
     public OptionsView(final Model m) {
 
 	this.model = m;
-	this.setLayout(new BorderLayout());// new FlowLayout(FlowLayout.LEADING,
-					   // 5, 1));
+	this.setLayout(new BorderLayout());
 
 	JPanel left = new JPanel();
 	left.setLayout(new GridLayout(7, 1));
@@ -63,13 +62,14 @@ public class OptionsView extends JPanel {
 	bytes1 = new JTextField("      ");
 	bytes1.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes1.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes1.getText().equals(""))
+		    bytes1.setText("      ");
 	    }
 	});
 	panel2.add(bytes1);
@@ -78,13 +78,14 @@ public class OptionsView extends JPanel {
 	bytes2 = new JTextField("      ");
 	bytes2.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes2.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes2.getText().equals(""))
+		    bytes2.setText("      ");
 	    }
 	});
 	panel2.add(bytes2);
@@ -93,13 +94,14 @@ public class OptionsView extends JPanel {
 	bytes3 = new JTextField("      ");
 	bytes3.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes3.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes3.getText().equals(""))
+		    bytes3.setText("      ");
 	    }
 	});
 	panel2.add(bytes3);
@@ -108,13 +110,14 @@ public class OptionsView extends JPanel {
 	bytes4 = new JTextField("      ");
 	bytes4.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes4.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes4.getText().equals(""))
+		    bytes4.setText("      ");
 	    }
 	});
 	panel2.add(bytes4);
@@ -130,13 +133,14 @@ public class OptionsView extends JPanel {
 	bytes5 = new JTextField("      ");
 	bytes5.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes5.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes5.getText().equals(""))
+		    bytes5.setText("      ");
 	    }
 	});
 	panel2.add(bytes5);
@@ -145,13 +149,14 @@ public class OptionsView extends JPanel {
 	bytes6 = new JTextField("      ");
 	bytes6.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes6.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes6.getText().equals(""))
+		    bytes6.setText("      ");
 	    }
 	});
 	panel2.add(bytes6);
@@ -160,13 +165,14 @@ public class OptionsView extends JPanel {
 	bytes7 = new JTextField("      ");
 	bytes7.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes7.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes7.getText().equals(""))
+		    bytes7.setText("      ");
 	    }
 	});
 	panel2.add(bytes7);
@@ -175,13 +181,14 @@ public class OptionsView extends JPanel {
 	bytes8 = new JTextField("      ");
 	bytes8.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		bytes8.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (bytes8.getText().equals(""))
+		    bytes8.setText("      ");
 	    }
 	});
 	panel2.add(bytes8);
@@ -194,13 +201,14 @@ public class OptionsView extends JPanel {
 	sec1 = new JTextField("      ");
 	sec1.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		sec1.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (sec1.getText().equals(""))
+		    sec1.setText("      ");
 	    }
 	});
 	panel.add(label);
@@ -215,13 +223,14 @@ public class OptionsView extends JPanel {
 	sec2 = new JTextField("      ");
 	sec2.addFocusListener(new FocusListener() {
 	    public void focusGained(FocusEvent e) {
-	           
+
 		sec2.setText("");
-	                
+
 	    }
 
 	    public void focusLost(FocusEvent e) {
-	        // nothing
+		if (sec2.getText().equals(""))
+		    sec2.setText("      ");
 	    }
 	});
 	panel.add(label);
@@ -241,20 +250,23 @@ public class OptionsView extends JPanel {
 		    model.setPendent(Integer.parseInt(sec1.getText()));
 		if (!sec2.getText().replaceAll(" ", "").equals(""))
 		    model.setInactive(Integer.parseInt(sec2.getText()));
+		String bytes = null;
 		try {
-		    
-		    String bytes = bytes1.getText();
-		    bytes += "." + bytes2.getText() + "."
-			    + bytes3.getText() + "."
-			    + bytes4.getText();
-			model.setNetwork(new ByteArray(bytes, false));
-		    bytes = bytes5.getText();
-		    bytes += "." + bytes6.getText()+ "."
-			    + bytes7.getText() +"."
-			    + bytes8.getText();
-			model.setMask(new ByteArray(bytes, false));
+
+		    bytes = bytes1.getText();
+		    bytes += "." + bytes2.getText() + "." + bytes3.getText()
+			    + "." + bytes4.getText();
+		    model.setNetwork(new ByteArray(bytes, false));
 		} catch (Exception e1) {
-		    System.out.println("bla");
+
+		}
+		try {
+		    bytes = bytes5.getText();
+		    bytes += "." + bytes6.getText() + "." + bytes7.getText()
+			    + "." + bytes8.getText();
+		    model.setMask(new ByteArray(bytes, false));
+		} catch (Exception e2) {
+
 		}
 	    }
 	});

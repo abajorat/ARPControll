@@ -131,9 +131,10 @@ public class Icon extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 	
-	if(((Device)o).getMac()==this.device.getMac()){
+	if(((Device)o).getMac().toString().equals(this.device.getMac().toString())){
 	    this.removeAll();
 	    this.build();
+	    this.updateUI();
 	}
     }
 }

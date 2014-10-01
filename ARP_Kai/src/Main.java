@@ -35,18 +35,23 @@ public class Main {
 		//model.setSenderMac(new ByteArray("24:", false));
 		
 		
-		Operator op = new Operator(com, model);
-		op.sendBroadcastFrequent(3);
+		Operator op = new Operator(com, model,0);
+		op.start();
+		
+			Receiver r = new Receiver(5, com);
+			r.start();
+			try {
+				r.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		
-
-		
-	
-		
-		Receiver r = new Receiver(60, com);
-		r.start();
-		StatusController statusController = new StatusController(com, 5, 40);
+		StatusController statusController = new StatusController(com, 5, 40, 20, model);
 		statusController.start();
+		
+		//com.getPcap().close(); Shutdownoperation
 		
 
 	}

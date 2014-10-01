@@ -35,6 +35,8 @@ public class Model extends Observable implements Serializable {
 
 	public void setDevice(PcapIf device) {
 		this.device = device;
+		setChanged();
+		notifyObservers();
 	}
 
 	public List<PcapIf> getDevices() {
@@ -48,14 +50,14 @@ public class Model extends Observable implements Serializable {
 	public Model() {
 		setPendent(10);
 		setInactive(20);
-		setTimeout(200);
+		setTimeout(100);
 		this.dispositivos = new LinkedList<Device>();
 		ByteArray b = new ByteArray("0.0.0.0", false);
 		setSenderIp(b);
 		setNetwork(b);
 		b = new ByteArray("00:00:00:00:00:00", true);
 		setSenderMac(b);
-		b = new ByteArray("255.255.255.248", false);
+		b = new ByteArray("255.255.255.254", false);
 		setMask(b);
 		this.maskValue = computeMaskValue(mask.getInts());
 		this.hosts = Math.pow(2, 32 - maskValue);
@@ -77,6 +79,7 @@ public class Model extends Observable implements Serializable {
 			setChanged();
 			notifyObservers("Device");
 		}
+	
 
 	}
 

@@ -35,7 +35,7 @@ public class MainView extends JPanel {
 
 	this.model = m;
 	this.setLayout(new GridLayout(1, 2));
-	left = new IconView(model.getDispositivos());
+	left = new IconView(model);
 	this.add(left);
 	JPanel right = new JPanel();
 	right.setLayout(new GridLayout(4, 1));

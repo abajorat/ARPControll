@@ -26,10 +26,8 @@ public class DescriptionView extends JPanel implements Observer {
 	devicelabel = new JLabel("Device: ");
 	network = new JLabel("Network: " + model.getNetwork().getString());
 	mask = new JLabel("Mask: " + model.getMask().getString());
-	timePendent = new JLabel("Packets until pendent: "
-		+ model.getPendent());
-	timeInactive = new JLabel("Time until inactive: "
-		+ model.getInactive());
+	timePendent = new JLabel("Packets until pendent: " + model.getPendent());
+	timeInactive = new JLabel("Time until inactive: " + model.getInactive());
 	this.add(devicelabel);
 	this.add(network);
 	this.add(mask);
@@ -40,7 +38,7 @@ public class DescriptionView extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
-	if (!((String) arg).equals("Device")) {
+	if (arg == null) {
 	    this.removeAll();
 	    devicelabel = new JLabel(model.getDevice().getName());
 	    network = new JLabel("Network: " + model.getNetwork().getString());
@@ -54,7 +52,7 @@ public class DescriptionView extends JPanel implements Observer {
 	    this.add(mask);
 	    this.add(timePendent);
 	    this.add(timeInactive);
+	    this.updateUI();
 	}
-
     }
 }
