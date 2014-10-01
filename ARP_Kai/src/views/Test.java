@@ -18,6 +18,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import arp.Communicator;
 
+import models.ByteArray;
+import models.Device;
 import models.Model;
 
 public class Test {
@@ -37,8 +39,7 @@ public class Test {
 	} catch (Exception e) {
 	    System.out.println("Error!");
 	}
-	
-	
+
 	Model model = new Model();
 	Communicator com = new Communicator(model);
 	JFrame frame = new JFrame("Main");
@@ -100,13 +101,15 @@ public class Test {
 	frame.setVisible(true);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame = new JFrame("Select");
-	SelectView select = new SelectView(model);
+	SelectView select = new SelectView(model, frame);
 	JDialog dialog = new JDialog(frame, Dialog.ModalityType.DOCUMENT_MODAL);
 	dialog.add(select);
 	frame.setContentPane(select);
 	frame.pack();
 	frame.setLocationRelativeTo(null);
 	frame.setSize(200, 100);
+	model.addDevice(new Device(new ByteArray("1:1:1:1:1:1", true)
+		.getBytes(), new ByteArray("0.0.0.0", false).getBytes(), 10));
 	frame.setVisible(true);
     }
 

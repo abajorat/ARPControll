@@ -79,6 +79,7 @@ public class Model extends Observable implements Serializable {
 			setChanged();
 			notifyObservers("Device");
 		}
+	
 
 	}
 

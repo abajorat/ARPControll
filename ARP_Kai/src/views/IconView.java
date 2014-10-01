@@ -30,16 +30,20 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import models.Device;
+import models.Model;
 
-public class IconView extends JPanel{
+public class IconView extends JPanel implements Observer {
 
     private JScrollPane pane;
     private JPanel panel;
     private LinkedList<Device> devices;
+    private Model model;
 
-    public IconView(LinkedList<Device> devices) {
+    public IconView(Model m) {
 
-	this.devices = devices;
+	this.model = m;
+	model.addObserver(this);
+	this.devices = model.getDispositivos();
 	this.setLayout(new BorderLayout());
 	panel = new JPanel();
 	panel.setBackground(Color.WHITE);
@@ -54,10 +58,22 @@ public class IconView extends JPanel{
     }
 
     public void addIcon(Device d) {
-	
+
 	Icon picLabel = new Icon(d);
 	this.panel.add(picLabel);
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+	if (((String)arg).equals("Device")) {
+	    this.removeAll();
+	    for (Device d : this.devices) {
+		this.addIcon(d);
+	    }
+	    this.updateUI();
+	}
     }
 
 }

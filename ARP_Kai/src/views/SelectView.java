@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,10 +18,12 @@ public class SelectView extends JPanel {
     private JLabel label;
     private JComboBox box;
     private Model model;
-    public SelectView(Model m){
+    private JFrame frame;
+    public SelectView(Model m, JFrame f){
 	
 	model = m;
-	label = new JLabel("Select the transmitting Device");
+	frame = f;
+	label = new JLabel("Select the transmitting Device:");
 	final Object[] dev = m.getDevices().toArray();
 	String[] items = new String[dev.length];
 	int i = 0;
@@ -34,6 +37,8 @@ public class SelectView extends JPanel {
 	    public void actionPerformed(ActionEvent e) {
 		
 		model.setDevice((PcapIf)dev[box.getSelectedIndex()]);
+		frame.setVisible(false);
+		frame.dispose();
 		
 	    }
 	});
