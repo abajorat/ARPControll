@@ -39,11 +39,19 @@ public class StatusController extends Thread {
 						}
 						
 					}
+					
+					if(d.getFailedMessages() > pendent){
+						System.out.println("Hallo");
+						d.setStatus(1);
+					}
+					if(d.getFailedMessages() > inactive){
+						d.setStatus(2);
+					}
 
 				}
 			
 			try {
-				sleep(5000);
+				sleep(1000);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();

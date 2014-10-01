@@ -34,10 +34,14 @@ public class Main {
 		model.setNetwork(new ByteArray("192.168.0.0", false));
 		model.setSenderMac(new ByteArray("24:ec:99:ee:aa:ac", true));
 
-		Operator op = new Operator(com, model, 1);
+		Operator op = new Operator(com, model, 0);
 		op.start();
+		StatusController statusController = new StatusController(com, 0, 1,
+				10000000, model);
+		statusController.start();
 
-		Receiver r = new Receiver(80, com);
+
+		Receiver r = new Receiver(200, com);
 		r.start();
 		try {
 			r.join();
@@ -46,9 +50,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		StatusController statusController = new StatusController(com, 5, 40,
-				100000, model);
-		statusController.start();
+		
 
 		// com.getPcap().close(); Shutdownoperation
 

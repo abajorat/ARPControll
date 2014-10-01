@@ -72,8 +72,7 @@ public class Communicator extends Thread {
 							
 							dev.setIp(d.getIp());
 							dev.setLastSignal(d.getLastSignal());
-							dev.setStatus(0);
-							dev.resetFailedMessages();
+							//dev.resetFailedMessages();
 							exists = true;
 							break;
 						}
