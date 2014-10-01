@@ -71,5 +71,12 @@ public class Device extends Observable implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public void resetFailedMessages(int failedMessages) {
+		this.failedMessages = 0;
+	}
+	
+	public void increaseFailedMessage(){
+		failedMessages++;
+	}
 
 }
