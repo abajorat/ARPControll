@@ -73,7 +73,7 @@ public class Communicator extends Thread {
 							dev.setIp(d.getIp());
 							dev.setLastSignal(d.getLastSignal());
 							dev.setStatus(0);
-							dev.set
+							dev.resetFailedMessages();
 							exists = true;
 							break;
 						}
@@ -108,6 +108,10 @@ public class Communicator extends Thread {
 
 	public Pcap getPcap() {
 		return pcap;
+	}
+
+	public Model getModel() {
+		return model;
 	}
 
 }
