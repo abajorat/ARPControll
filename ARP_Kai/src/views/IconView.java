@@ -66,12 +66,20 @@ public class IconView extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
-	if (((String)arg).equals("Device")) {
+	
+	if (arg!=null&&((String)arg).equals("Device")) {
 	    this.removeAll();
-	    for (Device d : this.devices) {
-		this.addIcon(d);
-	    }
+	    this.setLayout(new BorderLayout());
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setLayout(new GridLayout(0, 3));
+		pane = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		this.add(pane, BorderLayout.CENTER);
+
+		for (Device d : this.devices) {
+		    this.addIcon(d);
+		}
 	    this.updateUI();
 	}
     }

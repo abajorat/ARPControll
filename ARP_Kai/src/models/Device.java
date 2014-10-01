@@ -48,6 +48,7 @@ public class Device extends Observable implements Serializable {
 		this.lastSignal = lastSignal;
 		this.name = "new";
 		this.failedMessages = 0;
+		this.setType("Pc");
 	}
 	
 	public int getFailedMessages(){
@@ -60,7 +61,7 @@ public class Device extends Observable implements Serializable {
 		this.lastSignal = lastSignal;
 	}
 	public String getPath() {
-		return "/home/kai/Pictures/images.png";
+		return "resources/images.png";
 	}
 	public String getStatus() {
 		if (status == 0) return "active";
