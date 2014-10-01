@@ -17,20 +17,33 @@ public class Communicator extends Thread {
 	private PcapIf device;
 	private PcapPacketHandler<String> jpacketHandler;
 	private Pcap pcap;
+	public void setDevice(PcapIf device) {
+		this.device = device;
+	}
+
 	private final Model model;
-	
+	private List<PcapIf> devices;
+	private StringBuilder error;
+	public List<PcapIf> getDevices() {
+		return devices;
+	}
+
 	public Communicator( final Model model){
 		
 		this.model = model;
-		List<PcapIf> devices = new ArrayList<PcapIf>(); 
-        StringBuilder error = new StringBuilder(); 
+		devices = new ArrayList<PcapIf>(); 
+		error = new StringBuilder(); 
         int control = Pcap.findAllDevs(devices, error); 
         if (control == Pcap.NOT_OK || devices.isEmpty()) {  
             System.err.printf("Can't read list of devices, error is %s", error  
                 .toString());  
             return;  
         }  
-        device = devices.get(2);
+
+	}
+	
+	public void open(int devId){
+        this.device = devices.get(devId);
         int snaplen = 64 * 1024;           
         int flags = Pcap.MODE_PROMISCUOUS; 
         int timeout = 1000 * 10;     

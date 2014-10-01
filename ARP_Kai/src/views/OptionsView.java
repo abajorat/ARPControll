@@ -125,8 +125,8 @@ public class OptionsView extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 
-		model.setPendentTime(Integer.parseInt(sec1.getText().replaceAll(" ","")));
-		model.setInactiveTime(Integer.parseInt(sec2.getText().replaceAll(" ","")));
+		model.setPendent(Integer.parseInt(sec1.getText().replaceAll(" ","")));
+		model.setInactive(Integer.parseInt(sec2.getText().replaceAll(" ","")));
 		try {
 
 		    String bytes = bytes1.getText().replaceAll(" ", "");

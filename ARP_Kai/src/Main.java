@@ -27,6 +27,7 @@ public class Main {
 		}
 		
 		Communicator com = new Communicator(model);
+		com.open(2);
 		
 		
 		Operator op = new Operator(com, model);

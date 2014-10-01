@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import models.Device;
 import models.Model;
 
-public class MainView extends JPanel{
+public class MainView extends JPanel {
 
     private JButton arp;
     private JLabel device;
@@ -32,7 +32,7 @@ public class MainView extends JPanel{
     private Model model;
 
     public MainView(Model m) {
-	
+
 	this.model = m;
 	this.setLayout(new GridLayout(1, 2));
 	left = new IconView(model.getDispositivos());
@@ -58,6 +58,5 @@ public class MainView extends JPanel{
 	this.add(right);
 
     }
-
 
 }
