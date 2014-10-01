@@ -57,7 +57,7 @@ public class Model extends Observable implements Serializable {
 		setNetwork(b);
 		b = new ByteArray("00:00:00:00:00:00", true);
 		setSenderMac(b);
-		b = new ByteArray("255.255.255.254", false);
+		b = new ByteArray("255.255.255.224", false);
 		setMask(b);
 		this.maskValue = computeMaskValue(mask.getInts());
 		this.hosts = Math.pow(2, 32 - maskValue);
@@ -83,7 +83,7 @@ public class Model extends Observable implements Serializable {
 
 	}
 
-	public void deleteDevice(ByteArray mac) {
+	public  void deleteDevice(ByteArray mac) {
 
 		for (Device d : dispositivos) {
 			if (d.getMac().getString().equals(mac.getString())) {
