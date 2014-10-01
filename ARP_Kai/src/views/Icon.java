@@ -79,7 +79,7 @@ public class Icon extends JPanel implements Observer {
 			    public void actionPerformed(ActionEvent e) {
 
 				JFrame frame = new JFrame("Devices");
-				Devices view = new Devices(device);
+				Devices view = new Devices(device,frame);
 				frame.setContentPane(view);
 				view.setPreferredSize(new Dimension(250, 400));
 				frame.setLocationRelativeTo(null);

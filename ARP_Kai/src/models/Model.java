@@ -28,7 +28,8 @@ public class Model extends Observable implements Serializable {
 	private double hosts;
 	private PcapIf device;
 	private List<PcapIf> devices;
-
+	private boolean frequent; 
+	
 	public PcapIf getDevice() {
 		return device;
 	}
@@ -61,6 +62,14 @@ public class Model extends Observable implements Serializable {
 		setMask(b);
 		this.maskValue = computeMaskValue(mask.getInts());
 		this.hosts = Math.pow(2, 32 - maskValue);
+	}
+
+	public boolean isFrequent() {
+	    return frequent;
+	}
+
+	public void setFrequent(boolean frequent) {
+	    this.frequent = frequent;
 	}
 
 	public void setTimeout(int i) {

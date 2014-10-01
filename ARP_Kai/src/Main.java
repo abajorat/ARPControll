@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import models.ByteArray;
 import models.Model;
 import arp.Communicator;
+import arp.Operator;
 import arp.Receiver;
 import arp.StatusController;
 import arp.Transmitter;

@@ -1,6 +1,5 @@
+package arp;
 import models.Model;
-import arp.Communicator;
-import arp.Transmitter;
 
 public class Operator extends Thread {
 

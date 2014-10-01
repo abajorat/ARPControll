@@ -54,7 +54,7 @@ public class DeviceView extends JPanel implements Observer{
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
 		type = new JLabel("Change: ");
-		String[] items = {"PC","Laptop","Printer","Router"};
+		String[] items = {"Pc","Laptop","Printer","Router"};
 		typebox = new JComboBox(items);
 		typebox.addActionListener(new ActionListener() {
 		    
@@ -70,12 +70,12 @@ public class DeviceView extends JPanel implements Observer{
 		right.add(panel);
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
-		ip = new JLabel("IP: " + device.getIp());
+		ip = new JLabel("IP: " + device.getIp().getString());
 		panel.add(ip);
 		right.add(panel);
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
-		mac = new JLabel("MAC: " + device.getMac());
+		mac = new JLabel("MAC: " + device.getMac().getString());
 		panel.add(mac);
 		right.add(panel);
 		panel = new JPanel();
@@ -113,7 +113,7 @@ public class DeviceView extends JPanel implements Observer{
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
 		type = new JLabel("Change: ");
-		String[] items = {"PC","Laptop","Printer","Router"};
+		String[] items = {"Pc","Laptop","Printer","Router"};
 		typebox = new JComboBox(items);
 		typebox.addActionListener(new ActionListener() {
 		    
@@ -129,12 +129,12 @@ public class DeviceView extends JPanel implements Observer{
 		right.add(panel);
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
-		ip = new JLabel("IP: " + device.getIp());
+		ip = new JLabel("IP: " + device.getIp().getString());
 		panel.add(ip);
 		right.add(panel);
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1,1));
-		mac = new JLabel("MAC: " + device.getMac());
+		mac = new JLabel("MAC: " + device.getMac().getString());
 		panel.add(mac);
 		right.add(panel);
 		panel = new JPanel();

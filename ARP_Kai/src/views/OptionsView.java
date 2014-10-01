@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +39,7 @@ public class OptionsView extends JPanel {
     private final JTextField sec1;
     private final JTextField sec2;
     private JLabel label;
+    private JCheckBox check;
     private JButton button;
 
     private final Model model;
@@ -239,7 +241,12 @@ public class OptionsView extends JPanel {
 	panel.add(label);
 	left.add(panel);
 
-	left.add(new JPanel());
+	panel = new JPanel();
+	panel.setLayout(new FlowLayout());
+	panel.add(new JLabel("Send Frequent ARPs: "));
+	check = new JCheckBox();
+	panel.add(check);
+	left.add(panel);
 	button = new JButton("Apply");
 	button.addActionListener(new ActionListener() {
 
@@ -268,8 +275,14 @@ public class OptionsView extends JPanel {
 		} catch (Exception e2) {
 
 		}
+
+		if (check.isSelected()) {
+		    model.setFrequent(true);
+		}
+		else model.setFrequent(false);
 	    }
 	});
+
 	left.add(button);
 
 	BufferedImage pic = null;
@@ -289,7 +302,6 @@ public class OptionsView extends JPanel {
 	left.add(panel);
 	left.add(label);
 	this.add(left, BorderLayout.CENTER);
-	// this.add(label,BorderLayout.EAST);
 
     }
 }

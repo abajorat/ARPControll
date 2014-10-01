@@ -17,6 +17,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import arp.Communicator;
+import arp.Operator;
+
 import models.Device;
 import models.Model;
 
@@ -30,10 +33,12 @@ public class MainView extends JPanel {
     private JLabel timeInactive;
     private IconView left;
     private Model model;
-
-    public MainView(Model m) {
+    private Communicator com;
+    
+    public MainView(Model m, Communicator c) {
 
 	this.model = m;
+	this.com = c;
 	this.setLayout(new GridLayout(1, 2));
 	left = new IconView(model);
 	this.add(left);
@@ -51,6 +56,21 @@ public class MainView extends JPanel {
 	panel = new JPanel();
 	panel.setLayout(new GridLayout(2, 1));
 	arp = new JButton("Sent ARP");
+	
+	arp.addActionListener(new ActionListener() {
+	    
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		Operator op;
+		if(model.isFrequent()) {
+		    op = new Operator(com,model,0);
+		}
+		else{
+		    op = new Operator(com,model,1);
+		}
+		op.start();
+	    }
+	});
 	panel.add(new JPanel());
 	panel.add(arp);
 	right.add(panel);
