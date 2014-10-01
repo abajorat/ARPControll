@@ -44,12 +44,11 @@ public class OptionsView extends JPanel {
 
 	this.model = m;
 	this.setLayout(new BorderLayout());//new FlowLayout(FlowLayout.LEADING, 5, 1));
-
+	
 	JPanel left = new JPanel();
-	left.setLayout(new GridLayout(8, 1));
+	left.setLayout(new GridLayout(7, 1));
 	JPanel panel = new JPanel();
 	panel.setLayout(new FlowLayout(FlowLayout.LEADING));
-	panel.add(label);
 	left.add(panel);
 
 	panel = new JPanel();

@@ -23,7 +23,7 @@ public class DescriptionView extends JPanel implements Observer {
 	this.model = m;
 	m.addObserver(this);
 	this.setLayout(new GridLayout(5, 1));
-	devicelabel = new JLabel(model.getDevice());
+	devicelabel = new JLabel("Device: ");
 	network = new JLabel("Network: " + model.getNetwork().getString());
 	mask = new JLabel("Mask: " + model.getMask().getString());
 	timePendent = new JLabel("Packets until pendent: "
@@ -42,7 +42,7 @@ public class DescriptionView extends JPanel implements Observer {
 
 	if (!((String) arg).equals("Device")) {
 	    this.removeAll();
-	    devicelabel = new JLabel(model.getDevice());
+	    devicelabel = new JLabel(model.getDevice().getName());
 	    network = new JLabel("Network: " + model.getNetwork().getString());
 	    mask = new JLabel("Mask: " + model.getMask().getString());
 	    timePendent = new JLabel("Packets until pendent: "

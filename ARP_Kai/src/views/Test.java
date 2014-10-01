@@ -2,10 +2,12 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,6 +15,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import arp.Communicator;
 
 import models.Model;
 
@@ -33,8 +37,11 @@ public class Test {
 	} catch (Exception e) {
 	    System.out.println("Error!");
 	}
+	
+	
 	Model model = new Model();
-	JFrame frame = new JFrame("Test");
+	Communicator com = new Communicator(model);
+	JFrame frame = new JFrame("Main");
 	MainView view = new MainView(model);
 	JPanel panel = new JPanel();
 	final JPanel panel2 = new JPanel();
@@ -92,6 +99,15 @@ public class Test {
 	frame.pack();
 	frame.setVisible(true);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame = new JFrame("Select");
+	SelectView select = new SelectView(model);
+	JDialog dialog = new JDialog(frame, Dialog.ModalityType.DOCUMENT_MODAL);
+	dialog.add(select);
+	frame.setContentPane(select);
+	frame.pack();
+	frame.setLocationRelativeTo(null);
+	frame.setSize(200, 100);
+	frame.setVisible(true);
     }
 
 }
