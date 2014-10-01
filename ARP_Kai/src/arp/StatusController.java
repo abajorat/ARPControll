@@ -1,16 +1,21 @@
 package arp;
 
 import models.Device;
+import models.Model;
 
 public class StatusController extends Thread {
 	private Communicator com;
-	private int inactiveTime;
-	private int downTime;
+	private int inactive;
+	private int timeout;
+	private int pendent;
+	private Model model;
 
-	public StatusController(Communicator com, int inactiveTime, int downTime) {
+	public StatusController(Communicator com, int pendent,int inactive, int timeout, Model model) {
 		this.com = com;
-		this.inactiveTime = inactiveTime;
-		this.downTime = downTime;
+		this.model = model;
+		this.inactive = inactive;
+		this.pendent = pendent;
+		this.timeout = timeout;
 	}
 
 	public void run() {
@@ -19,15 +24,13 @@ public class StatusController extends Thread {
 				long timePassed = System.currentTimeMillis() - d.getLastSignal();
 				timePassed /= 1000;
 				//System.out.println(timePassed);
-				if(timePassed > inactiveTime){
-					d.setStatus(1);
+				if(timePassed > timeout){
+					model.deleteDevice(d.getMac());
 				}
-				if(timePassed > downTime){
-					d.setStatus(2);
-				}
+				
 			}
 			try {
-				sleep(1000);
+				sleep(5000);
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();

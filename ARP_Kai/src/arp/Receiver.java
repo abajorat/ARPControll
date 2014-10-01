@@ -18,7 +18,7 @@ public class Receiver extends Thread {
 	public void run() {
 		System.out.println("vamos");
 		com.getPcap().loop(timeout, com.getJpacketHandler(), "jNetPcap rocks!");
-		com.getPcap().close();
+		
 		for (Device d : com.getDispositivos()) {
 			System.out.println("Name: " + d.getName() + "   Mac: "+ d.getMac().getString() + "   Ip: " + d.getIp().getString()
 					+ "   Last Signal in ms: " + d.getLastSignal() + "   State: " + d.getStatus());
