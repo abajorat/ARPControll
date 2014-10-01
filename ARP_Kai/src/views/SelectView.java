@@ -20,7 +20,7 @@ public class SelectView extends JPanel {
     public SelectView(Model m){
 	
 	model = m;
-	label = new JLabel("Select the transmitting Device");
+	label = new JLabel("Select the transmitting Device:");
 	final Object[] dev = m.getDevices().toArray();
 	String[] items = new String[dev.length];
 	int i = 0;
