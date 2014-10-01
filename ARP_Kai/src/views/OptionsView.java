@@ -51,11 +51,8 @@ public class OptionsView extends JPanel {
 
 	JPanel left = new JPanel();
 	left.setLayout(new GridLayout(7, 1));
+	
 	JPanel panel = new JPanel();
-	panel.setLayout(new FlowLayout(FlowLayout.LEADING));
-	left.add(panel);
-
-	panel = new JPanel();
 	panel.setLayout(new FlowLayout(FlowLayout.LEADING));
 	label = new JLabel("Network: ");
 	panel.add(label);

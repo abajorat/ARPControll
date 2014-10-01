@@ -40,7 +40,16 @@ public class Icon extends JPanel implements Observer {
 	try {
 
 	    BufferedImage pic = ImageIO.read(new File(device.getPath()));
-	    final JLabel picLabel = new JLabel("Bla", new ImageIcon(pic),
+	    String plus = null;
+	    switch(device.getStatus()){
+	    case "active" : plus = " ✓";break;
+	    case "pendent" : plus = " !";break;
+	    case "inactive" : plus = " x";break;
+	    default : plus = "";
+	    }
+	    String s = device.getMac().getString() + plus;
+	    
+	    final JLabel picLabel = new JLabel(s, new ImageIcon(pic),
 		    JLabel.CENTER);
 	    picLabel.setVerticalTextPosition(JLabel.BOTTOM);
 	    picLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -81,7 +90,7 @@ public class Icon extends JPanel implements Observer {
 				JFrame frame = new JFrame("Devices");
 				Devices view = new Devices(device,frame);
 				frame.setContentPane(view);
-				view.setPreferredSize(new Dimension(250, 400));
+				view.setPreferredSize(new Dimension(250, 250));
 				frame.setLocationRelativeTo(null);
 				frame.pack();
 				frame.setVisible(true);

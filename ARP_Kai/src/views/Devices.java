@@ -157,7 +157,7 @@ public class Devices extends JPanel {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	laptoplabel = new JLabel("Router", new ImageIcon(pic), JLabel.CENTER);
+	laptoplabel = new JLabel("Laptop", new ImageIcon(pic), JLabel.CENTER);
 	laptoplabel.setVerticalTextPosition(JLabel.BOTTOM);
 	laptoplabel.setHorizontalTextPosition(JLabel.CENTER);
 
