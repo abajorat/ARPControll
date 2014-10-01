@@ -89,6 +89,7 @@ public class Device extends Observable implements Serializable {
 	case "Printer":
 	    s = "resources/printer.png";break;
 	}
+
 	return s;
     }
 
@@ -107,5 +108,13 @@ public class Device extends Observable implements Serializable {
 	this.setChanged();
 	this.notifyObservers();
     }
+
+	public void resetFailedMessages() {
+		this.failedMessages = 0;
+	}
+	
+	public void increaseFailedMessage(){
+		failedMessages++;
+	}
 
 }

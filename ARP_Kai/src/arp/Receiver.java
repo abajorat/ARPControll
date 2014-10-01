@@ -21,7 +21,7 @@ public class Receiver extends Thread {
 		
 		for (Device d : com.getDispositivos()) {
 			System.out.println("Name: " + d.getName() + "   Mac: "+ d.getMac().getString() + "   Ip: " + d.getIp().getString()
-					+ "   Last Signal in ms: " + d.getLastSignal() + "   State: " + d.getStatus());
+					+ "   Last Signal in ms: " + d.getLastSignal() + "   State: " + d.getStatus() + "   Failed: " + d.getFailedMessages());
 		}
 		System.out.println("acabamos");
 
